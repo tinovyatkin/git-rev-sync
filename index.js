@@ -31,6 +31,7 @@ function short() {
     shortHash = res.replace(/[^0-9a-z]*/gim, '');
   }
   // ensure it shorter than 8 letters
-  return shortHash.substr(0, 7);
+  shortHash = shortHash.substr(0, 7);
+  return shortHash;
 }
 exports.short = short;
