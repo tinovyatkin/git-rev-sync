@@ -16,6 +16,9 @@ function short() {
   } else if ('TRAVIS_COMMIT' in process.env) {
     // https://docs.travis-ci.com/user/environment-variables/
     shortHash = process.env.TRAVIS_COMMIT;
+  } else if ('CIRCLE_SHA1' in process.env) {
+    // https://circleci.com/docs/1.0/environment-variables/
+    shortHash = process.env.CIRCLE_SHA1;
   } else {
     // git rev-parse --short HEAD
     const res = execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
