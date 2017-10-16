@@ -12,7 +12,7 @@ function short() {
     shortHash = process.env.SOURCE_VERSION;
   } else if ('HEROKU_SLUG_COMMIT' in process.env) {
     // labs metadata https://devcenter.heroku.com/articles/dyno-metadata
-    shortHash = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
+    shortHash = process.env.HEROKU_SLUG_COMMIT;
   } else if ('TRAVIS_COMMIT' in process.env) {
     // https://docs.travis-ci.com/user/environment-variables/
     shortHash = process.env.TRAVIS_COMMIT;
@@ -30,6 +30,7 @@ function short() {
     // we should trim everything less numbers and letters
     shortHash = res.replace(/[^0-9a-z]*/gim, '');
   }
-  return shortHash;
+  // ensure it shorter than 8 letters
+  return shortHash.substr(0, 7);
 }
 exports.short = short;
