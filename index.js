@@ -13,6 +13,9 @@ function short() {
   } else if ('HEROKU_SLUG_COMMIT' in process.env) {
     // labs metadata https://devcenter.heroku.com/articles/dyno-metadata
     shortHash = process.env.HEROKU_SLUG_COMMIT.slice(0, 7);
+  } else if ('TRAVIS_COMMIT' in process.env) {
+    // https://docs.travis-ci.com/user/environment-variables/
+    shortHash = process.env.TRAVIS_COMMIT;
   } else {
     // git rev-parse --short HEAD
     const res = execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
