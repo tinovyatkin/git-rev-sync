@@ -7,4 +7,6 @@ before_install:
   
 cache: yarn
 
+install: yarn install --no-lockfile --silent
+
 script: yarn test
