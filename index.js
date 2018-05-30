@@ -10,6 +10,8 @@ const {
   TRAVIS_COMMIT,
   CIRCLE_SHA1,
   GAE_VERSION,
+  APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
+  APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
 } = process.env;
 
 /**
@@ -18,6 +20,7 @@ const {
  *         https://devcenter.heroku.com/articles/dyno-metadata
  * Travis: https://docs.travis-ci.com/user/environment-variables/
  * CircleCI: https://circleci.com/docs/1.0/environment-variables/
+ * AppVeyor: https://www.appveyor.com/docs/environment-variables/
  */
 
 let shortHash;
