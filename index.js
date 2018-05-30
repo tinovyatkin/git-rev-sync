@@ -11,7 +11,7 @@ const {
   CIRCLE_SHA1,
   GAE_VERSION,
   APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
-  APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
+  APPVEYOR_REPO_COMMIT,
 } = process.env;
 
 /**
@@ -73,6 +73,8 @@ function short() {
     HEROKU_SLUG_COMMIT ||
     TRAVIS_COMMIT ||
     CIRCLE_SHA1 ||
+    APPVEYOR_PULL_REQUEST_HEAD_COMMIT ||
+    APPVEYOR_REPO_COMMIT ||
     getRevFromSourceContextFile() ||
     GAE_VERSION ||
     execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
