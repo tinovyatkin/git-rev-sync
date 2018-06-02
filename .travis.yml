@@ -9,4 +9,6 @@ cache: yarn
 
 install: yarn install --no-lockfile --silent
 
-script: yarn test
+script:
+  - yarn test
+  - bash <(curl -s https://codecov.io/bash) -f coverage/coverage-final.json
