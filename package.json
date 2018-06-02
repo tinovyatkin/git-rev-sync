@@ -37,6 +37,7 @@
   },
   "jest": {
     "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
     "testEnvironment": "node",
     "verbose": true,
     "bail": true
