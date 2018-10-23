@@ -1,4 +1,4 @@
 steps:
-  - name: node:11.0.0
+  - name: node:10.12.0
     entrypoint: npm
     args: ["install"]
