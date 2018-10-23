@@ -1,4 +1,5 @@
 steps:
-  - name: node:10.12.0
-    entrypoint: npm
+  - name: "gcr.io/cloud-builders/npm"
     args: ["install"]
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["test"]
