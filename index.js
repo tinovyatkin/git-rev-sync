@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const { execFileSync } = require('child_process');
-const { existsSync, statSync } = require('fs');
+const path = require("path");
+const { execFileSync } = require("child_process");
+const { existsSync, statSync } = require("fs");
 
 const {
   SOURCE_VERSION,
@@ -12,6 +12,7 @@ const {
   GAE_VERSION,
   APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
   APPVEYOR_REPO_COMMIT,
+  SHORT_SHA
 } = process.env;
 
 /**
@@ -21,6 +22,7 @@ const {
  * Travis: https://docs.travis-ci.com/user/environment-variables/
  * CircleCI: https://circleci.com/docs/1.0/environment-variables/
  * AppVeyor: https://www.appveyor.com/docs/environment-variables/
+ * Google Cloud Build: https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.builds#Build
  */
 
 let shortHash;
@@ -33,7 +35,7 @@ function searchFileSync(dirToStart, fileToSearch) {
       // console.log(curDir);
       const filePath = path.join(curDir, fileToSearch);
       if (existsSync(filePath)) return filePath;
-      curDir = path.resolve(curDir, '..');
+      curDir = path.resolve(curDir, "..");
     } while (curDir.length > 1 && statSync(curDir).isDirectory() && ++deep < 6);
   } catch (e) {
     // console.error(e);
@@ -48,11 +50,13 @@ function searchFileSync(dirToStart, fileToSearch) {
  * @returns {string}
  */
 function getRevFromSourceContextFile() {
-  const sourceContext = searchFileSync(__dirname, 'source-context.json');
+  const sourceContext = searchFileSync(__dirname, "source-context.json");
   if (!sourceContext) return undefined;
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    const { git: { revisionId } } = require(sourceContext);
+    const {
+      git: { revisionId }
+    } = require(sourceContext);
     return revisionId;
   } catch (e) {
     console.error(e);
@@ -75,13 +79,14 @@ function short() {
     CIRCLE_SHA1 ||
     APPVEYOR_PULL_REQUEST_HEAD_COMMIT ||
     APPVEYOR_REPO_COMMIT ||
+    SHORT_SHA ||
     getRevFromSourceContextFile() ||
     GAE_VERSION ||
-    execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
+    execFileSync("git", ["rev-parse", "--short", "HEAD"], {
       cwd: __dirname,
-      encoding: 'utf8',
-      timeout: 4000,
-    }).replace(/[^\da-z]*/gim, '')
+      encoding: "utf8",
+      timeout: 4000
+    }).replace(/[^\da-z]*/gim, "")
   ).substr(0, 7);
 
   return shortHash;

@@ -1,11 +1,6 @@
 {
   "enabled": true,
-  "extends": [
-    "config:base",
-    ":pinSkipCi",
-    "default:pinDigestsDisabled",
-    ":automergeMinor"
-  ],
+  "extends": [":pinSkipCi", "default:pinDigestsDisabled", ":automergeMinor"],
   "baseBranches": ["master"],
   "respectLatest": false,
   "labels": ["dependencies"],
