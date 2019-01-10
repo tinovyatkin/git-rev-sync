@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/destinationstransfers/git-rev-sync#readme",
   "devDependencies": {
-    "@destinationstransfers/eslint-config": "3.10.1",
+    "@destinationstransfers/eslint-config": "3.11.0",
     "eslint": "5.12.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-node": "8.0.1",
