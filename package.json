@@ -21,7 +21,7 @@
   "homepage": "https://github.com/destinationstransfers/git-rev-sync#readme",
   "devDependencies": {
     "@destinationstransfers/eslint-config": "6.4.0",
-    "eslint": "5.14.1",
+    "eslint": "5.15.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-node": "8.0.1",
     "jest": "24.1.0"
