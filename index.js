@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const path = require("path");
-const { execFileSync } = require("child_process");
-const { existsSync, statSync } = require("fs");
+const path = require('path');
+const { execFileSync } = require('child_process');
+const { existsSync, statSync } = require('fs');
 
 const {
   SOURCE_VERSION,
@@ -12,7 +12,7 @@ const {
   GAE_VERSION,
   APPVEYOR_PULL_REQUEST_HEAD_COMMIT,
   APPVEYOR_REPO_COMMIT,
-  SHORT_SHA
+  SHORT_SHA,
 } = process.env;
 
 /**
@@ -35,9 +35,9 @@ function searchFileSync(dirToStart, fileToSearch) {
       // console.log(curDir);
       const filePath = path.join(curDir, fileToSearch);
       if (existsSync(filePath)) return filePath;
-      curDir = path.resolve(curDir, "..");
+      curDir = path.resolve(curDir, '..');
     } while (curDir.length > 1 && statSync(curDir).isDirectory() && ++deep < 6);
-  } catch (e) {
+  } catch (err) {
     // console.error(e);
   }
   return undefined;
@@ -50,16 +50,15 @@ function searchFileSync(dirToStart, fileToSearch) {
  * @returns {string}
  */
 function getRevFromSourceContextFile() {
-  const sourceContext = searchFileSync(__dirname, "source-context.json");
+  const sourceContext = searchFileSync(__dirname, 'source-context.json');
   if (!sourceContext) return undefined;
   try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
     const {
-      git: { revisionId }
+      git: { revisionId },
     } = require(sourceContext);
     return revisionId;
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
   }
   return undefined;
 }
@@ -82,13 +81,13 @@ function short() {
     SHORT_SHA ||
     getRevFromSourceContextFile() ||
     GAE_VERSION ||
-    execFileSync("git", ["rev-parse", "--short", "HEAD"], {
+    execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
       cwd: __dirname,
-      encoding: "utf8",
-      timeout: 4000
-    }).replace(/[^\da-z]*/gim, "")
+      encoding: 'utf8',
+      timeout: 4000,
+    }).replace(/[^\da-z]*/gim, '')
   ).substr(0, 7);
 
   return shortHash;
 }
-exports.short = short;
+module.exports.short = short;
