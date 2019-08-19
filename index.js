@@ -7,6 +7,11 @@ const envCi = require('env-ci');
 
 const { commit: CI_COMMIT } = envCi();
 
+/**	const { commit: CI_COMMIT } = envCi();
+ * Uses following env variables:
+ * SHORT_SHA Google Cloud Build: https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.builds#Build
+ */
+
 let shortHash;
 
 /**
@@ -38,6 +43,7 @@ function short() {
   shortHash = (
     CI_COMMIT ||
     process.env.HEROKU_SLUG_COMMIT ||
+    process.env.SHORT_SHA ||
     getRevFromSourceContextFile() ||
     process.env.GAE_VERSION ||
     execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
