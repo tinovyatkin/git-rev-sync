@@ -1,6 +1,6 @@
 {
   "name": "@destinationstransfers/git-rev-sync",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "Get current git commit hash",
   "main": "index.js",
   "scripts": {
