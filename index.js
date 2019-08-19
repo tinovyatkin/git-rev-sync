@@ -41,9 +41,10 @@ function short() {
   if (shortHash) return shortHash;
 
   shortHash = (
-    CI_COMMIT ||
+    process.env.SOURCE_VERSION ||
     process.env.HEROKU_SLUG_COMMIT ||
     process.env.SHORT_SHA ||
+    CI_COMMIT ||
     getRevFromSourceContextFile() ||
     process.env.GAE_VERSION ||
     execFileSync('git', ['rev-parse', '--short', 'HEAD'], {
