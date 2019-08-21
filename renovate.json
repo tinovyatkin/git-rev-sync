@@ -7,5 +7,6 @@
   "timezone": "America/Santo_Domingo",
   "pin": {
     "requiredStatusChecks": null
-  }
+  },
+  "automerge": true
 }
