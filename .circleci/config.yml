@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:latest@sha256:9b42fdd3cd4a8c8a58378ed7ac57c486cf2cec89de9f24c90ed604cc5dac92c7
+      - image: circleci/node:latest@sha256:5f81e42b8dd9644598952f069d72684dae91bdf1a36ec759ac162987b42b9787
 
     working_directory: ~/repo
 
