@@ -54,7 +54,7 @@
     }
   },
   "dependencies": {
-    "env-ci": "5.0.2",
+    "env-ci": "6.0.0",
     "find-up": "6.2.0"
   }
 }
